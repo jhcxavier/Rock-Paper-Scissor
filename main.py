@@ -24,5 +24,21 @@ while not state:
         print(illegal_value)
         continue
     state = True
+
+
+def get_option(game_turn):
+    ask_again = False
+    while not ask_again:
+        print(f"Game {game_turn + 1}")
+        option = input("Enter (R)ock, (P)aper, or (S)cissors: ")
+        option = option.upper()
+        if option == 'R' or option == "P" or option == 'S':
+            return option
+        else:
+            print("Unknown selection. Try again\n")
+            continue
+
+
 for i in range(0, get_number_of_games):
-    print(f"This is game {i + 1}")
+    get_option(i)
+    print('\n')
