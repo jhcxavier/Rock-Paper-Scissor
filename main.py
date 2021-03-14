@@ -117,10 +117,12 @@ def give_winner(score):
     else:
         return "Scissors"
 
-print('-'*35)
+
+print('-' * 35)
 for i in range(0, get_number_of_games):
-    print("{:>4d}{:>2s}{:<10s}{:<10s}{:<10s}".format(i + 1, " ", give_winner(player_score[i]), give_winner(computer_score[i]), winner_result[i]))
-print('-'*35)
+    print("{:>4d}{:>2s}{:<10s}{:<10s}{:<10s}".format(i + 1, " ", give_winner(player_score[i]),
+                                                     give_winner(computer_score[i]), winner_result[i]))
+print('-' * 35)
 print(f"Player Wins: {final_score_player}")
 print(f"Computer Wins: {final_score_computer}")
 print(f"Draw: {draw}")
