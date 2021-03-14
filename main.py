@@ -71,17 +71,32 @@ def computer_choice():
         print("Computer chose Scissors")
 
 
+final_score_player = 0
+final_score_computer = 0
+
+
 def get_winner(player, computer):
     if player == computer:
         print("This game is a draw")
     elif (player == 0 and computer == 1) or (player == 1 and computer == 2) or (player == 2 and computer == 0):
         print("Computer wins")
+        return False
     elif (player == 1 and computer == 0) or (player == 2 and computer == 1) or (player == 0 and computer == 2):
         print("Player wins")
+        return True
 
 
 for i in range(0, get_number_of_games):
     get_option(i)
     computer_choice()
-    get_winner(player_score[i], computer_score[i])
+    winner = get_winner(player_score[i], computer_score[i])
+    if winner:
+        final_score_player += 1
+    else:
+        final_score_computer += 1
+
     print('\n')
+
+print("Results for game played")
+print(f"results player: {final_score_player}")
+print(f"results computer: {final_score_computer}")
