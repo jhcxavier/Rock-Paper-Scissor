@@ -4,7 +4,7 @@ print("Welcome to my Rock, Paper, Scissors Game!")
 
 state = False
 get_number_of_games = 3
-illegal_value = "illegal value"
+illegal_value = "Sorry, try again!"
 unknown_value = "Unknown selection. Try again\n"
 number_of_plays = "Enter the number of games to play -- odd number 3 to 11: "
 min_play = 3
@@ -33,6 +33,7 @@ while not state:
 
 player_score = list()
 computer_score = list()
+winner_result = list()
 
 
 def convert_score(score):
@@ -73,34 +74,53 @@ def computer_choice():
 
 final_score_player = 0
 final_score_computer = 0
+draw = 0
 
 
 def get_winner(player, computer):
     if player == computer:
         print("This game is a draw")
+        winner_result.append("Draw")
+        return "Draw"
     elif (player == 0 and computer == 1) or (player == 1 and computer == 2) or (player == 2 and computer == 0):
         print("Computer wins")
-        return False
+        winner_result.append("Computer")
+        return "Computer"
     elif (player == 1 and computer == 0) or (player == 2 and computer == 1) or (player == 0 and computer == 2):
         print("Player wins")
-        return True
+        winner_result.append("Player")
+        return "Player"
 
 
 for i in range(0, get_number_of_games):
     get_option(i)
     computer_choice()
     winner = get_winner(player_score[i], computer_score[i])
-    if winner:
+    if winner == "Player":
         final_score_player += 1
-    else:
+    elif winner == "Computer":
         final_score_computer += 1
+    else:
+        draw += 1
 
     print('\n')
 
-print("Results for game played")
-print("{:>5s}{:>10s}{:>10s}{:>10s}".format("Game", "Player", "Computer", "Winner"))
-for i in range(0, get_number_of_games):
-    print("{:>5d}{:>10d}{:>10d}{:>10d}".format(i + 1, i, i, i))
+print("Results for Game Played")
+print("{:<5s}{:>1s}{:<10s}{:<10s}{:<10s}".format("Game", " ", "Player", "Computer", "Winner"))
 
-print(f"results player: {final_score_player}")
-print(f"results computer: {final_score_computer}")
+
+def give_winner(score):
+    if score == 0:
+        return "Rock"
+    elif score == 1:
+        return "Paper"
+    else:
+        return "Scissors"
+
+print('-'*35)
+for i in range(0, get_number_of_games):
+    print("{:>4d}{:>2s}{:<10s}{:<10s}{:<10s}".format(i + 1, " ", give_winner(player_score[i]), give_winner(computer_score[i]), winner_result[i]))
+print('-'*35)
+print(f"Player Wins: {final_score_player}")
+print(f"Computer Wins: {final_score_computer}")
+print(f"Draw: {draw}")
