@@ -98,5 +98,9 @@ for i in range(0, get_number_of_games):
     print('\n')
 
 print("Results for game played")
+print("{:>5s}{:>10s}{:>10s}{:>10s}".format("Game", "Player", "Computer", "Winner"))
+for i in range(0, get_number_of_games):
+    print("{:>5d}{:>10d}{:>10d}{:>10d}".format(i + 1, i, i, i))
+
 print(f"results player: {final_score_player}")
 print(f"results computer: {final_score_computer}")
